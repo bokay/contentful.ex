@@ -26,10 +26,14 @@ defmodule Contentful.IncludeResolver do
   end
 
   defp merge_includes(includes) do
-    all_includes = Enum.concat(
-      Map.get(includes, "Asset", []),
-      Map.get(includes, "Entry", [])
-    )
+    cond do
+      is_map(includes) ->
+        Enum.concat(
+          Map.get(includes, "Asset", []),
+          Map.get(includes, "Entry", [])
+        )
+      true -> []
+    end
   end
 
   defp resolve_include_field(field, includes) when is_list(field) do
