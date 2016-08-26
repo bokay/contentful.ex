@@ -6,7 +6,7 @@ defmodule Contentful.IncludeResolver do
   the current missing links if they are not part of the includes.
   """
 
-  def resolve_entry(entries) do
+  def resolve_entry(entries) when is_map(entries) do
     cond do
       Map.has_key?(entries, "items") ->
         items = entries["items"]
@@ -24,16 +24,18 @@ defmodule Contentful.IncludeResolver do
       true -> entries
     end
   end
+  def resolve_entry(entries) when is_list(entries) do
+    Enum.map(entries, &resolve_entry(&1))
+  end
 
-  defp merge_includes(includes) do
-    cond do
-      is_map(includes) ->
-        Enum.concat(
-          Map.get(includes, "Asset", []),
-          Map.get(includes, "Entry", [])
-        )
-      true -> []
-    end
+  defp merge_includes(includes) when is_map(includes) do
+    Enum.concat(
+      Map.get(includes, "Asset", []),
+      Map.get(includes, "Entry", [])
+    )
+  end
+  defp merge_includes(includes)  do
+    []
   end
 
   defp resolve_include_field(field, includes) when is_list(field) do
