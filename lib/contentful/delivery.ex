@@ -5,25 +5,25 @@ defmodule Contentful.Delivery do
   Content Delivery API.
   """
 
-  require Logger
-  use HTTPoison.Base
+  alias Contentful.Request
 
-  @endpoint "cdn.contentful.com"
   @protocol "https"
 
-  def space(space_id, access_token) do
+  def space(hostname, space_id, access_token) do
     space_url = "/spaces/#{space_id}"
 
     contentful_request(
+      hostname,
       space_url,
       access_token
     )
   end
 
-  def entries(space_id, access_token, params \\ %{}) do
+  def entries(hostname, space_id, access_token, params \\ %{}) do
     entries_url = "/spaces/#{space_id}/entries"
 
     response = contentful_request(
+      hostname,
       entries_url,
       access_token,
       Map.delete(params, "resolve_includes"))
@@ -38,57 +38,64 @@ defmodule Contentful.Delivery do
     end
   end
 
-  def entry(space_id, access_token, entry_id, params \\ %{}) do
-    entries = entries(space_id, access_token, Map.merge(params, %{'sys.id' => entry_id}))
+  def entry(hostname, space_id, access_token, entry_id, params \\ %{}) do
+    entries = entries(hostname, space_id, access_token, Map.merge(params, %{'sys.id' => entry_id}))
     entries |> Enum.fetch!(0)
   end
 
-  def assets(space_id, access_token, params \\ %{}) do
+  def assets(hostname, space_id, access_token, params \\ %{}) do
     assets_url = "/spaces/#{space_id}/assets"
 
     contentful_request(
+      hostname,
       assets_url,
       access_token,
       params
     )["items"]
   end
 
-  def asset(space_id, access_token, asset_id, params \\ %{}) do
+  def asset(hostname, space_id, access_token, asset_id, params \\ %{}) do
     asset_url = "/spaces/#{space_id}/assets/#{asset_id}"
 
     contentful_request(
+      hostname,
       asset_url,
       access_token,
       params
     )
   end
 
-  def content_types(space_id, access_token, params \\ %{}) do
+  def content_types(hostname, space_id, access_token, params \\ %{}) do
     content_types_url = "/spaces/#{space_id}/content_types"
 
     contentful_request(
+      hostname,
       content_types_url,
       access_token,
       params
     )["items"]
   end
 
-  def content_type(space_id, access_token, content_type_id, params \\ %{}) do
+  def content_type(hostname, space_id, access_token, content_type_id, params \\ %{}) do
     content_type_url = "/spaces/#{space_id}/content_types/#{content_type_id}"
 
     contentful_request(
+      hostname,
       content_type_url,
       access_token,
       params
     )
   end
 
-  defp contentful_request(uri, access_token, params \\ %{}) do
+  defp contentful_request(hostname, uri, access_token, params \\ %{}) do
+    args = %{headers: client_headers(access_token),
+             payload: "",
+             options: []}
+
     final_url = format_path(path: uri, params: params)
+    url = "#{@protocol}://#{hostname}#{final_url}"
 
-    Logger.debug "GET #{final_url}"
-
-    get!(final_url, client_headers(access_token)).body
+    Request.request(:get, url, args)
   end
 
   defp client_headers(access_token) do
@@ -108,14 +115,5 @@ defmodule Contentful.Delivery do
     else
       path
     end
-  end
-
-  defp process_url(url) do
-    "#{@protocol}://#{@endpoint}#{url}"
-  end
-
-  defp process_response_body(body) do
-    body
-    |> Poison.decode!
   end
 end
