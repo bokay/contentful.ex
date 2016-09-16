@@ -34,7 +34,7 @@ defmodule Contentful.IncludeResolver do
       Map.get(includes, "Entry", [])
     )
   end
-  defp merge_includes(includes)  do
+  defp merge_includes(_includes)  do
     []
   end
 
