@@ -12,10 +12,10 @@ defmodule Contentful.Request do
         case :hackney.body(client_ref) do
           {:ok, body} -> case JSON.decode(body) do
                            {:ok, data} ->
-                             log(:info, method, url, data)
+                             log(:info, method, url)
                              data
                            _ ->
-                             log(:info, method, url, body)
+                             log(:info, method, url)
                              body
                          end
           {:error, error} -> log(:error, method, url, error)
@@ -32,6 +32,12 @@ defmodule Contentful.Request do
     end
   end
 
+  @spec log(atom, atom, String.t) :: atom
+  defp log(:info, method, url) do
+    _ = Logger.info fn ->
+      ~s( method: #{method} \n url: #{url} \n body); end
+    :ok
+  end
   @spec log(atom, atom, String.t, String.t) :: atom
   defp log(:info, method, url, data) do
     _ = Logger.info fn ->

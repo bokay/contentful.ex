@@ -7,10 +7,6 @@ defmodule Contentful.IncludeResolverTest do
   @access_token  "ffa20a81e0d56de9150d6b9b7a38e07e0fb4df78500d7418b23f8919ba2f66cc"
   @space_id      "z3aswf9egfi8"
 
-  setup_all do
-    HTTPoison.start
-  end
-
   @tag timeout: 10000
   test "entries" do
     use_cassette "entries" do
