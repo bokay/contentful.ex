@@ -6,29 +6,21 @@ defmodule Contentful.Request do
   @type success :: {:body, String.t} | {:json, String.t}
 
   @spec request(method, String.t, map) :: error | success
-  def request(method, url, params) do
-    case :hackney.request(method, url, params[:headers], params[:payload], params[:options]) do
-      {:ok, _status_code, _headers, client_ref} ->
-        case :hackney.body(client_ref) do
-          {:ok, body} -> case JSON.decode(body) do
-                           {:ok, data} ->
-                             log(:info, method, url)
-                             data
-                           _ ->
-                             log(:info, method, url)
-                             body
-                         end
-          {:error, error} -> log(:error, method, url, error)
-        end
-      error ->
-        case error do
-          {:ok, data} ->
-            log(:error, method, url, data)
-            {:error, data }
-          _ ->
-            log(:error, method, url, error)
-            {:error, error }
-        end
+  def request(:get, url, params) do
+    headers = params[:headers]
+    payload = params[:payload]
+
+    response = HTTPotion.get(url, headers: headers, timeout: 4_000)
+    try do
+      case JSON.decode(response.body) do
+        {:ok, data} ->
+          log(:info, :get, url)
+          data
+        _ ->
+          log(:info, :get, url)
+      end
+    rescue
+      error -> log(:error, :get, url, error)
     end
   end
 

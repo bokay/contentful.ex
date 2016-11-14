@@ -1,11 +1,16 @@
 defmodule Contentful.DeliveryTest do
   use ExUnit.Case
   alias Contentful.Delivery
-  use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
+  use ExVCR.Mock
 
   @access_token  "ACCESS_TOKEN"
-  @space_id      "z3aswf9egfi8"
+  @space_id      "if4k9hkjacuz"
   @hostname      "cdn.contentful.com"
+
+  setup do
+    ExVCR.Config.filter_sensitive_data("Bearer .+", "ACCESS_TOKEN")
+    :ok
+  end
 
   @tag timeout: 10000
   test "entries" do
@@ -31,7 +36,7 @@ defmodule Contentful.DeliveryTest do
   @tag timeout: 10000
   test "entry" do
     use_cassette "entry" do
-      entry = Delivery.entry(@hostname, @space_id, @access_token, "5JQ715oDQW68k8EiEuKOk8")
+      entry = Delivery.entry(@hostname, @space_id, @access_token, "53l06m2nzOMOQ6YGcWgmcw")
 
       assert is_map(entry["fields"])
     end
@@ -48,7 +53,7 @@ defmodule Contentful.DeliveryTest do
 
   test "content_type" do
     use_cassette "content_type" do
-      content_type = Delivery.content_type(@hostname, @space_id, @access_token, "1kUEViTN4EmGiEaaeC6ouY")
+      content_type = Delivery.content_type(@hostname, @space_id, @access_token, "7hyub4rrpKy6AecWgUSOUq")
 
       assert is_list(content_type["fields"])
     end
@@ -65,7 +70,7 @@ defmodule Contentful.DeliveryTest do
 
   test "asset" do
     use_cassette "asset" do
-      asset = Delivery.asset(@hostname, @space_id, @access_token, "2ReMHJhXoAcy4AyamgsgwQ")
+      asset = Delivery.asset(@hostname, @space_id, @access_token, "2BppH8PireiCaQIUqkOuge")
       fields = asset["fields"]
 
       assert is_map(fields)

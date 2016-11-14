@@ -3,7 +3,7 @@
     "request": {
       "body": "",
       "headers": {
-        "authorization": "Bearer ACCESS_TOKEN",
+        "authorization": "ACCESS_TOKEN",
         "Accept": "application/json",
         "User-Agent": "Contentful-Elixir"
       },
@@ -23,18 +23,19 @@
         "Cache-Control": "max-age=0",
         "Content-Type": "application/vnd.contentful.delivery.v1+json",
         "ETag": "W/\"734e5bc825fb4fb5f8a1aad6d51a1f9a\"",
-        "Server": "nginx",
+        "Server": "Contentful",
         "X-Content-Type-Options": "nosniff",
-        "X-Contentful-Request-Id": "58b-832929590",
+        "X-Contentful-Request-Id": "562df5f8e3e8028f9c8f52154ee2d985",
         "Content-Length": "9163",
         "Accept-Ranges": "bytes",
-        "Date": "Thu, 21 Jul 2016 00:18:22 GMT",
+        "Date": "Mon, 14 Nov 2016 16:41:46 GMT",
         "Via": "1.1 varnish",
-        "Age": "8555",
+        "Age": "5043",
         "Connection": "keep-alive",
-        "X-Served-By": "cache-iad2140-IAD",
+        "X-Served-By": "cache-iad2138-IAD",
         "X-Cache": "HIT",
         "X-Cache-Hits": "1",
+        "X-Timer": "S1479141706.522186,VS0,VE0",
         "Vary": "Accept-Encoding"
       },
       "status_code": 200,

@@ -22,7 +22,7 @@ defmodule Contentful.Mixfile do
   def application do
     [applications: [
       :logger,
-      :hackney
+      :httpotion
     ]]
   end
 
@@ -37,7 +37,7 @@ defmodule Contentful.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:hackney, "~> 1.6"},
+      {:httpotion, "~> 3.0.2"},
       {:json, ">= 0.3.3"},
       {:exvcr, "~> 0.7", only: :test},
       {:dogma, "~> 0.1", only: :dev}

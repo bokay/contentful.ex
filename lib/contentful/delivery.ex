@@ -40,7 +40,10 @@ defmodule Contentful.Delivery do
 
   def entry(hostname, space_id, access_token, entry_id, params \\ %{}) do
     entries = entries(hostname, space_id, access_token, Map.merge(params, %{'sys.id' => entry_id}))
-    entries |> Enum.fetch!(0)
+    case entries do
+      [] -> nil
+      _ -> Enum.fetch!(entries, 0)
+    end
   end
 
   def assets(hostname, space_id, access_token, params \\ %{}) do
@@ -89,8 +92,7 @@ defmodule Contentful.Delivery do
 
   defp contentful_request(hostname, uri, access_token, params \\ %{}) do
     args = %{headers: client_headers(access_token),
-             payload: "",
-             options: []}
+             body: ""}
 
     final_url = format_path(path: uri, params: params)
     url = "#{@protocol}://#{hostname}#{final_url}"
