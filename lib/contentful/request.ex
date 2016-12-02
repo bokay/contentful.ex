@@ -1,4 +1,10 @@
 defmodule Contentful.Request do
+  @moduledoc """
+  The Contentful.Request module wraps the external requests made.
+  For now, only the get method is created, as it's the only one relevant for the
+  delivery API. Every request made is logged.
+  """
+
   require Logger
 
   @type method :: :put | :get | :delete
@@ -27,18 +33,20 @@ defmodule Contentful.Request do
   @spec log(atom, atom, String.t) :: atom
   defp log(:info, method, url) do
     _ = Logger.info fn ->
-      ~s( method: #{method} \n url: #{url} \n body); end
+      ~s( method: #{method} \n url: #{url} \n body)
+    end
     :ok
   end
   @spec log(atom, atom, String.t, String.t) :: atom
   defp log(:info, method, url, data) do
     _ = Logger.info fn ->
-      ~s( method: #{method} \n url: #{url} \n body: #{inspect data}); end
+      ~s( method: #{method} \n url: #{url} \n body: #{inspect data})
+    end
     :ok
   end
   defp log(:error, method, url, error) do
     _ = Logger.info fn ->
-      ~s( method: #{method} \n url: #{url} \n error: #{inspect error});
+      ~s( method: #{method} \n url: #{url} \n error: #{inspect error})
     end
     :ok
   end
