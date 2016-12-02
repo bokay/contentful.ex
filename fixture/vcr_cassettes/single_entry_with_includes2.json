@@ -1,0 +1,45 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": {
+        "authorization": "ACCESS_TOKEN",
+        "Accept": "application/json",
+        "User-Agent": "Contentful-Elixir"
+      },
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://cdn.contentful.com/spaces/osfkcaa4fuwa/entries/?content_type=380684&fields.slug=evaluation-of-electronic-medical-record-vital-sign-data-versus-a-commercially-available-acuity-score-in-predicting-need-for-critical-intervention-at-a-tertiary-children-s-hospital&include=10"
+    },
+    "response": {
+      "body": "{\n  \"sys\": {\n    \"type\": \"Array\"\n  },\n  \"total\": 1,\n  \"skip\": 0,\n  \"limit\": 100,\n  \"items\": [\n    {\n      \"sys\": {\n        \"space\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"Space\",\n            \"id\": \"osfkcaa4fuwa\"\n          }\n        },\n        \"id\": \"2981282\",\n        \"type\": \"Entry\",\n        \"createdAt\": \"2016-08-25T19:02:08.256Z\",\n        \"updatedAt\": \"2016-09-01T16:12:10.238Z\",\n        \"revision\": 2,\n        \"contentType\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"ContentType\",\n            \"id\": \"380684\"\n          }\n        },\n        \"locale\": \"en-US\"\n      },\n      \"fields\": {\n        \"pDFFile\": {\n          \"sys\": {\n            \"type\": \"Link\",\n            \"linkType\": \"Asset\",\n            \"id\": \"1525739\"\n          }\n        },\n        \"authors\": \"<p>\\n    Yong Sing da Silva, MD, Melinda Fiedor Hamilton, MD, MSc, Christopher Horvat, MD, Ericka L. Fink, MD, MS, Fereshteh Palmer, MS, Andrew J. Nowalk, MD, PhD, Daniel G. Winger, MS, Robert S. B. Clark, MD\\n</p>\",\n        \"publicationDate\": \"2015-09-01\",\n        \"publication\": \"<p>\\n    Pediatric Critical Care Medicine Summary\\n</p>\",\n        \"summary\": \"\",\n        \"title\": \"Evaluation of Electronic Medical Record Vital Sign Data Versus a Commercially Available Acuity Score in Predicting Need for Critical Intervention at a Tertiary Childrenâs Hospital\",\n        \"slug\": \"evaluation-of-electronic-medical-record-vital-sign-data-versus-a-commercially-available-acuity-score-in-predicting-need-for-critical-intervention-at-a-tertiary-children-s-hospital\"\n      }\n    }\n  ],\n  \"includes\": {\n    \"Asset\": [\n      {\n        \"sys\": {\n          \"space\": {\n            \"sys\": {\n              \"type\": \"Link\",\n              \"linkType\": \"Space\",\n              \"id\": \"osfkcaa4fuwa\"\n            }\n          },\n          \"id\": \"1525739\",\n          \"type\": \"Asset\",\n          \"createdAt\": \"2016-08-29T15:19:48.042Z\",\n          \"updatedAt\": \"2016-08-29T15:19:48.042Z\",\n          \"revision\": 1,\n          \"locale\": \"en-US\"\n        },\n        \"fields\": {\n          \"title\": \"2015.09_Evaluation_of_Electronic_Medical_Record_Vital_Sign_Data_Versus_a_Commercially_Available_Acuity_Score_in_Predicting_Need_for_Critical_Intervention_at_a_Tertiary_Children___s_Hospital_Pediatric_Citical_Care_Medicine.pdf\",\n          \"file\": {\n            \"url\": \"//images.contentful.com/osfkcaa4fuwa/1525739/14311cac10388bc127b406cc2d12a6f6/2015.09_Evaluation_of_Electronic_Medical_Record_Vital_Sign_Data_Versus_a_Commercially_Available_Acuity_Score_in_Predicting_N.pdf\",\n            \"details\": {\n              \"size\": 303714,\n              \"image\": {\n                \"width\": 612,\n                \"height\": 792\n              }\n            },\n            \"fileName\": \"2015.09_Evaluation_of_Electronic_Medical_Record_Vital_Sign_Data_Versus_a_Commercially_Available_Acuity_Score_in_Predicting_Need_for_Critical_Intervention_at_a_Tertiary_Children___s_Hospital_Pediatric_Citical_Care_Medicine.pdf\",\n            \"contentType\": \"image/jpeg\"\n          }\n        }\n      }\n    ]\n  }\n}\n",
+      "headers": {
+        "Access-Control-Allow-Headers": "Accept,Accept-Language,Authorization,Cache-Control,Content-Length,Content-Range,Content-Type,DNT,Destination,Expires,If-Match,If-Modified-Since,If-None-Match,Keep-Alive,Last-Modified,Origin,Pragma,Range,User-Agent,X-Http-Method-Override,X-Mx-ReqToken,X-Requested-With,X-Contentful-Version,X-Contentful-Content-Type,X-Contentful-Organization,X-Contentful-Skip-Transformation,X-Contentful-User-Agent",
+        "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Expose-Headers": "Etag",
+        "Access-Control-Max-Age": "86400",
+        "Cache-Control": "max-age=0",
+        "Content-Type": "application/vnd.contentful.delivery.v1+json",
+        "ETag": "W/\"163d257588ce238990f83dcc92306862\"",
+        "Server": "Contentful",
+        "X-Content-Type-Options": "nosniff",
+        "X-Contentful-Request-Id": "67359f3a41f69b1f3345e25d3f5bafba",
+        "Content-Length": "3077",
+        "Accept-Ranges": "bytes",
+        "Date": "Fri, 02 Dec 2016 20:52:21 GMT",
+        "Via": "1.1 varnish",
+        "Age": "240",
+        "Connection": "keep-alive",
+        "X-Served-By": "cache-iad2648-IAD",
+        "X-Cache": "HIT",
+        "X-Cache-Hits": "1",
+        "X-Timer": "S1480711941.858124,VS0,VE0",
+        "Vary": "Accept-Encoding"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
