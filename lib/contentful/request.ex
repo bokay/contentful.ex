@@ -13,7 +13,7 @@ defmodule Contentful.Request do
 
   @spec request(method, String.t, map) :: error | success
   def request(:get, url, params) do
-    headers = params[:headers]
+    headers = Keyword.new params[:headers]
 
     response = HTTPotion.get(url, headers: headers, timeout: 4_000)
     try do
