@@ -119,9 +119,9 @@ defmodule Contentful.Delivery do
 
   defp client_headers(access_token) do
     [
-      {"authorization", "Bearer #{access_token}"},
-      {"Accept", "application/json"},
-      {"User-Agent", "Contentful-Elixir"}
+      {:"authorization", "Bearer #{access_token}"},
+      {:"Accept", "application/json"},
+      {:"User-Agent", "Contentful-Elixir"}
     ]
   end
 
