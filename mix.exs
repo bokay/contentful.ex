@@ -21,6 +21,7 @@ defmodule Contentful.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     [applications: [
+      :json,
       :logger,
       :httpotion
     ]]

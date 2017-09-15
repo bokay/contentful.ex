@@ -16,7 +16,6 @@ defmodule Contentful.Request do
     headers = Keyword.new params[:headers]
 
     response = HTTPotion.get(url, headers: headers, timeout: 4_000)
-    |> IO.inspect
     try do
       case JSON.decode(response.body) do
         {:ok, data} ->
